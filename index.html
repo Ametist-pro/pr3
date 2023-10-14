@@ -6,24 +6,27 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="">
-        <script>
-            f(["553.168.1.1","172.168.1.1","2001:db8::1a00:1", "256.123.124.2", "2001:0DB8:AA10:0001:0000:0000:0000:00FB"]);
-            function f(ips) {
-        const v4 = /^((25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\.){3}(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])$/;
-        const v6 = /^((([0-9a-fA-F]){1,4})\:){7}([0-9a-fA-F]){1,4}$/;
-    
-        for (const ip of ips) {
-            if (v4.test(ip)) {
-                document.writeln("IPv4: ", ip, ", ");
-            } else if (v6.test(ip)) {
-                document.writeln("IPv6: ", ip, ", ");
-            }
-            
-        }
-    }
-        </script>
+    <form id="ipshki">
+        <input type="text" id="input">
+        <input type="button" value="Ввод" id="btn">
     </form>
-    
+    <script>
+        btn.onclick = function ipshki () {
+         var input = document.forms["ipshki"].elements["input"].value;
+         var v4 = /^((25[0-5]|2[0-4][\d]|1[\d][\d]|[1-9]?[\d])\.){3}(25[0-5]|2[0-4][\d]|1[\d][\d]|[1-9]?[\d])$/;
+         var v6 = /^((([0-9a-fA-F]){1,4})\:){7}([0-9a-fA-F]){1,4}$/;
+         
+         var IPv4 = input.match(v4);
+         var IPv6 = input.match(v6);
+
+         if (IPv4) {
+             document.writeln(`IPv4: ${IPv4[0]}`);
+         } else if (IPv6) {
+             document.writeln(`IPv6: ${IPv6[0]}`);
+         } else {
+            document.writeln("НЕТ IP!")
+         }
+        } 
+     </script>
 </body>
 </html>
